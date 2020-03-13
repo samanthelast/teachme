@@ -13,139 +13,98 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Text('paniz_ariyamanesh'),
       ),
       endDrawer: Drawer(),
-      body: Stack(
-        alignment: Alignment.center,
+      body: SingleChildScrollView(
+          child: Center(
+              child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          // background image and bottom contents
-          Column(
+          Row(
             children: <Widget>[
               Container(
-                width: MediaQuery.of(context).size.width,
-                height: 160,
+                margin: EdgeInsets.only(top: 15, left: 30, right: 30),
+                height: 100.0,
+                width: 100.0,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
+                  shape: BoxShape.circle,
+                  color: Colors.green,
+                  image: new DecorationImage(
+                    image: new ExactAssetImage(
+                        'assets/images/paniz_profile_picture.jpg'),
                     fit: BoxFit.cover,
-                    image: new AssetImage('assets/images/paniz_back2.jpg'),
                   ),
                 ),
               ),
               Expanded(
+                flex: 1,
                 child: Container(
-                  margin: EdgeInsets.only(top:100),
-                  
-                  child: Center(
-                    child: Card(
-                child: SizedBox(
-              height: 200,
-              width: MediaQuery.of(context).size.width - 40,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Column(
-
-                        children: <Widget>[Text('Learn about Iranian culture',style: TextStyle(fontSize: 16),)],
-                      ),
-                      
-                     
-                     
-                      
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Row(
+                  margin: EdgeInsets.only(top: 30, right: 30),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Column(
-
-                        children: <Widget>[Card(child:Container(height: 100,width: 100,child: Image.asset('assets/images/speakfarsi.jpg'),)), Text('speak Farsi',style: TextStyle(fontSize: 16),)],
+                        children: <Widget>[
+                          Text(
+                            '302',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'POSTS',
+                            style: TextStyle(fontSize: 10),
+                          )
+                        ],
                       ),
                       Column(
-                      children: <Widget>[Card(child:Container(height: 100,width: 100,child: Image.asset('assets/images/damnoosh.jpg'),)), Text('Damnoosh',style: TextStyle(fontSize: 16),)],
+                        children: <Widget>[
+                          Text(
+                            '10.3K',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'FOLLOWERS',
+                            style: TextStyle(fontSize: 10),
+                          )
+                        ],
                       ),
                       Column(
-                      children: <Widget>[Card(child:Container(height: 100,width: 100,child: Image.asset('assets/images/food.jpg'),)), Text('cooking',style: TextStyle(fontSize: 16),)],
+                        children: <Widget>[
+                          Text(
+                            '120',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            'FOLLOWING',
+                            style: TextStyle(fontSize: 10),
+                          )
+                        ],
                       ),
-                     
-                      
                     ],
                   ),
-             
-               
-                ],
-              ),
-            ))
-                  ),
                 ),
-              )
+              ),
             ],
           ),
-          // Profile image
-          Positioned(
-            top: 100.0, // (background container size) - (circle height / 2)
-            child: Card(
-                child: SizedBox(
-              height: 250,
-              width: MediaQuery.of(context).size.width - 40,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 60),
-                  Text(
-                    'Paniz Ariyamanesh',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  SizedBox(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Column(
-
-                        children: <Widget>[Text('302',style: TextStyle(fontSize: 16),), Text('POSTS',style: TextStyle(fontSize: 10),)],
-                      ),
-                      Column(
-                       children: <Widget>[Text('10.3K',style: TextStyle(fontSize: 16),), Text('FOLLOWERS',style: TextStyle(fontSize: 10),)],
-                      ),
-                      Column(
-                       children: <Widget>[Text('120',style: TextStyle(fontSize: 16),), Text('FOLLOWING',style: TextStyle(fontSize: 10),)],
-                      ),
-                     
-                      
-                    ],
-                  ),
-                   SizedBox(height: 30),
-                  Text(
-                    '22 y.o Iranian living in Paris',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    '🇮🇷 🇫🇷',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  
-                ],
-              ),
-            )),
-          ),
-          Positioned(
-            top: 50.0, // (background container size) - (circle height / 2)
-            child: Container(
-              height: 100.0,
-              width: 100.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.green,
-                image: new DecorationImage(
-                  image: new ExactAssetImage(
-                      'assets/images/paniz_profile_picture.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
+          SizedBox(height: 30),
+          Container(
+            margin: EdgeInsets.only(left: 30),
+            child: Text(
+              'Paniz Ariyanmanesh',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
+          SizedBox(height: 15),
+          Container(
+            margin: EdgeInsets.only(left: 30),
+            child: Text(
+              '22 y.o Iranian living in Paris  🇮🇷 🇫🇷',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+     
         ],
-      )
+      ))),
     );
   }
 }
