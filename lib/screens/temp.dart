@@ -1,151 +1,82 @@
+// Copyright 2017 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatefulWidget {
-  @override
-  _ProfileScreenState createState() => _ProfileScreenState();
-}
-
-class _ProfileScreenState extends State<ProfileScreen> {
+class TabbedAppBarSample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('paniz_ariyamanesh'),
-      ),
-      endDrawer: Drawer(),
-      body: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          // background image and bottom contents
-          Column(
-            children: <Widget>[
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 160,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: new AssetImage('assets/images/paniz_back2.jpg'),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(top:100),
-                  
-                  child: Center(
-                    child: Card(
-                child: SizedBox(
-              height: 200,
-              width: MediaQuery.of(context).size.width - 40,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Column(
-
-                        children: <Widget>[Text('Learn about Iranian culture',style: TextStyle(fontSize: 16),)],
-                      ),
-                      
-                     
-                     
-                      
-                    ],
-                  ),
-                  SizedBox(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Column(
-
-                        children: <Widget>[Card(child:Container(height: 100,width: 100,child: Image.asset('assets/images/speakfarsi.jpg'),)), Text('speak Farsi',style: TextStyle(fontSize: 16),)],
-                      ),
-                      Column(
-                      children: <Widget>[Card(child:Container(height: 100,width: 100,child: Image.asset('assets/images/damnoosh.jpg'),)), Text('Damnoosh',style: TextStyle(fontSize: 16),)],
-                      ),
-                      Column(
-                      children: <Widget>[Card(child:Container(height: 100,width: 100,child: Image.asset('assets/images/food.jpg'),)), Text('cooking',style: TextStyle(fontSize: 16),)],
-                      ),
-                     
-                      
-                    ],
-                  ),
-             
-               
-                ],
-              ),
-            ))
-                  ),
-                ),
-              )
-            ],
-          ),
-          // Profile image
-          Positioned(
-            top: 100.0, // (background container size) - (circle height / 2)
-            child: Card(
-                child: SizedBox(
-              height: 250,
-              width: MediaQuery.of(context).size.width - 40,
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 60),
-                  Text(
-                    'Paniz Ariyamanesh',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  SizedBox(height: 30),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Column(
-
-                        children: <Widget>[Text('302',style: TextStyle(fontSize: 16),), Text('POSTS',style: TextStyle(fontSize: 10),)],
-                      ),
-                      Column(
-                       children: <Widget>[Text('10.3K',style: TextStyle(fontSize: 16),), Text('FOLLOWERS',style: TextStyle(fontSize: 10),)],
-                      ),
-                      Column(
-                       children: <Widget>[Text('120',style: TextStyle(fontSize: 16),), Text('FOLLOWING',style: TextStyle(fontSize: 10),)],
-                      ),
-                     
-                      
-                    ],
-                  ),
-                   SizedBox(height: 30),
-                  Text(
-                    '22 y.o Iranian living in Paris',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  Text(
-                    '🇮🇷 🇫🇷',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  
-                ],
-              ),
-            )),
-          ),
-          Positioned(
-            top: 50.0, // (background container size) - (circle height / 2)
-            child: Container(
-              height: 100.0,
-              width: 100.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.green,
-                image: new DecorationImage(
-                  image: new ExactAssetImage(
-                      'assets/images/paniz_profile_picture.jpg'),
-                  fit: BoxFit.cover,
-                ),
-              ),
+    return MaterialApp(
+      home: DefaultTabController(
+        length: choices.length,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('Tabbed AppBar'),
+            bottom: TabBar(
+              isScrollable: true,
+              tabs: choices.map((Choice choice) {
+                return Tab(
+                  text: choice.title,
+                  icon: Icon(choice.icon),
+                );
+              }).toList(),
             ),
           ),
-        ],
-      )
+          body: TabBarView(
+            children: choices.map((Choice choice) {
+              return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: ChoiceCard(choice: choice),
+              );
+            }).toList(),
+          ),
+        ),
+      ),
     );
   }
+}
+
+class Choice {
+  const Choice({this.title, this.icon});
+
+  final String title;
+  final IconData icon;
+}
+
+const List<Choice> choices = const <Choice>[
+  const Choice(title: 'CAR', icon: Icons.directions_car),
+  const Choice(title: 'BICYCLE', icon: Icons.directions_bike),
+  const Choice(title: 'BOAT', icon: Icons.directions_boat),
+  const Choice(title: 'BUS', icon: Icons.directions_bus),
+  const Choice(title: 'TRAIN', icon: Icons.directions_railway),
+  const Choice(title: 'WALK', icon: Icons.directions_walk),
+];
+
+class ChoiceCard extends StatelessWidget {
+  const ChoiceCard({Key key, this.choice}) : super(key: key);
+
+  final Choice choice;
+
+  @override
+  Widget build(BuildContext context) {
+    final TextStyle textStyle = Theme.of(context).textTheme.display1;
+    return Card(
+      color: Colors.white,
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Icon(choice.icon, size: 128.0, color: textStyle.color),
+            Text(choice.title, style: textStyle),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(TabbedAppBarSample());
 }

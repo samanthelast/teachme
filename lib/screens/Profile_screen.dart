@@ -86,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ],
           ),
-          SizedBox(height: 30),
+          SizedBox(height: 15),
           Container(
             margin: EdgeInsets.only(left: 30),
             child: Text(
@@ -94,17 +94,105 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 10),
           Container(
+            
             margin: EdgeInsets.only(left: 30),
-            child: Text(
-              '22 y.o Iranian living in Paris  🇮🇷 🇫🇷',
-              style: TextStyle(fontSize: 18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  '📈Trader',
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(height: 5,),
+                Text(
+                  '🧠Mentor',
+                  style: TextStyle(fontSize: 18),
+                ),
+                SizedBox(height: 5,),
+                Text(
+                  '👥Let\'s grow together',
+                  style: TextStyle(fontSize: 18),
+                ),
+                
+              ],
+              
             ),
           ),
-     
+          SizedBox(height: 15),
+          Container(
+            margin: EdgeInsets.only(left: 30, right: 30),
+            width: MediaQuery.of(context).size.width,
+            child: RaisedButton(
+              onPressed: () {},
+              child: Text(
+                'Edit Profile',
+              ),
+              color: Colors.white,
+            ),
+          ),
+          SizedBox(height: 15),
+          Container(
+            margin: EdgeInsets.only(left: 30, right: 30),
+            child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(children: <Widget>[
+                  
+                  Story('assets/images/story-tutorial.jpg', 'Tutorials',Colors.blue),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Story('assets/images/story-travel.jpg', 'Travel',Colors.pink),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Story('assets/images/story-mindset.jpg', 'Mindset',Colors.blue),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Story('assets/images/story-book.jpg', 'MyBooks',Colors.blue),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Story('assets/images/story-car.jpg', 'Cars',Colors.pink),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Story('assets/images/story-vacation.jpg', 'Vacation',Colors.pink),
+                ])),
+          )
         ],
       ))),
+    );
+  }
+
+  Widget Story(String imageAdd, String title,Color borderColor) {
+    return Column(
+      children: <Widget>[
+        Container(
+          height: 70.0,
+          width: 70.0,
+          margin: EdgeInsets.only(bottom: 10),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: borderColor,
+              width: 3
+            ),
+            shape: BoxShape.circle,
+            color:borderColor,
+            image: new DecorationImage(
+              image: new ExactAssetImage(imageAdd),
+              fit: BoxFit.cover,
+
+            ),
+          ),
+        ),
+        Text(
+          title,
+          style: TextStyle(fontSize: 15),
+        )
+      ],
     );
   }
 }
